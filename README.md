@@ -28,7 +28,7 @@ docker run --name <NAME TO FIND IN DOCKER> -e POSTGRES_PASSWORD=<YOUR AMAZING PA
 
 ![Postgres Create Database](./assets/dbeaver_03_create_database.png)
 
-# ORM Config
+## ORM Config
 You must create a config file at the root level of your app, to configure the connections with database.
 
 ```javascript
@@ -97,3 +97,18 @@ after that, use the following commands:
 <strong>Revert last migration</strong>
 
   - ``` yarn typeorm migration:revert ```
+
+
+# SQL Definitions
+
+## Foreign Key
+
+- Definition:
+  - A FOREIGN KEY is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table.
+  - The table containing the foreign key is called the child table,
+  - The table containing the candidate key is called the referenced or parent table.
+
+- Relations:
+  - One to One
+  - One to Many
+  - Many to Many
