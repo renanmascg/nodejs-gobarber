@@ -19,6 +19,8 @@
     "prettier"
   ],
   "rules": {
+    "camelcase": "off",
+    "comma-dangle": "error",
     "prettier/prettier": "error",
     "class-methods-use-this":"off",
     "import/extensions": [
