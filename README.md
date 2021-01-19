@@ -28,6 +28,44 @@ docker run --name <NAME TO FIND IN DOCKER> -e POSTGRES_PASSWORD=<YOUR AMAZING PA
 
 ![Postgres Create Database](./assets/dbeaver_03_create_database.png)
 
+# ORM Config
+You must create a config file at the root level of your app, to configure the connections with database.
+
+```javascript
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "<YOUR AMAZING PASSWORD>",
+  "database": "gostack_gobarber",
+  "entities": [
+    "./src/models/*.ts"
+  ],
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
+```
+
+- Important Definitions:
+
+  - entities:
+    - the routes for your entities ( models inside your app )
+
+  - migrations:
+    - all files where the migrations are located
+    - can be more than one,
+
+  - cli: migrationDir
+    - folder where your migrations files are
+    - this is used to locate and run migrations.
+
+
+
 # Migrations
 
 Migrations are like a github for your database, it controls the version and state of your database.
