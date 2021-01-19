@@ -28,3 +28,34 @@ docker run --name <NAME TO FIND IN DOCKER> -e POSTGRES_PASSWORD=<YOUR AMAZING PA
 
 ![Postgres Create Database](./assets/dbeaver_03_create_database.png)
 
+# Migrations
+
+Migrations are like a github for your database, it controls the version and state of your database.
+
+## Migrations commands
+
+To use migrations commands, go to your package.json and add a script like this:
+
+```javascript
+  "scripts": {
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+  }
+```
+
+after that, use the following commands:
+
+<strong>Show all migrations state</strong>
+
+  - ``` yarn typeorm migration:show ```
+
+<strong>Create migration</strong>
+
+  - ``` yarn typeorm migration:create -n CreateAppointments ```
+
+<strong>Run All Migration</strong>
+
+  - ``` yarn typeorm migration:run ```
+
+<strong>Revert last migration</strong>
+
+  - ``` yarn typeorm migration:revert ```
