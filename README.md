@@ -112,3 +112,37 @@ after that, use the following commands:
   - One to One
   - One to Many
   - Many to Many
+
+# Dealing with Errors
+
+To deal with errors, we should use a global error handling
+Every error that occurs inside this applications, is going to pass through a middleware and inside this middleware, we treat them.
+
+Each global error handling used as middleware must have 4 args:
+  - Error, Request, Response and Next
+
+Tip 01: Create a internal class Error ( like AppError ) to difference between, what you are expection and what is unexpected
+
+The following example will make it more clear:
+
+Tip 02: As our routes are assyncronous, express lib do not handle it. so we need to import another lib to make this work
+  - ``` yarn add express-async-errors ```
+  - you must import this lib right after importing express, if don't this will not work !!
+
+```javascript
+app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
+      status: 'error',
+      message: err.message,
+    });
+  }
+
+  console.error(err);
+
+  return response.status(500).json({
+    status: 'error',
+    message: 'Internal Server Error',
+  });
+});
+```
