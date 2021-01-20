@@ -19,7 +19,7 @@ usersRouter.post('/', async (req, res) => {
       updated_at: user.updated_at,
     };
 
-    return res.json(userWithoutPassword);
+    return res.json({ user: userWithoutPassword });
   } catch (err) {
     return res.status(400).json({ error: err.message });
   }
