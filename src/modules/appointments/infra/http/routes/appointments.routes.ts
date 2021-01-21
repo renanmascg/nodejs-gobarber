@@ -6,7 +6,6 @@ import AppointmentsRepository from '@modules/appointments/infra/typeorm/reposito
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 
 const appointmentsRouter = Router();
-const appointmentsRepository = new AppointmentsRepository();
 
 appointmentsRouter.use(ensureAuthenticated);
 
@@ -18,6 +17,8 @@ appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.post('/', async (req, res) => {
   const { provider_id, date } = req.body;
+
+  const appointmentsRepository = new AppointmentsRepository();
 
   const parsedDate = parseISO(date); // transformando dados
 
