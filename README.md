@@ -146,3 +146,38 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 });
 ```
+
+# Related Paths
+
+To use related paths to import packages (@modules/ @shared), you should follow the next steps:
+  - Add to your tsconfig.json these configs
+  ```json
+  "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+    },
+  ```
+- Add to your package.json the following package:
+  ```yarn add tsconfig-paths -D```
+
+- go to your package.json at scripts and add in front of ts-node-dev `-r tsconfig-paths/register`
+- Example of your scripts inside package.json:
+```json
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --exit-child --poll --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "start": "ts-node  src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+  },
+```
+
+## BENEFITS
+
+- these configs tell to your typescript how to find the paths to module based on ./src folder
+- make it a lot more easy to import packages
+- does not matter which file you are located, if you want to import a folder from modules, you may import using:
+```javascript
+import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
+```
