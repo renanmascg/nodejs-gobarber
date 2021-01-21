@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import fs from 'fs';
 import path from 'path';
 import uploadConfig from '../../../config/upload';
-import User from '../entities/User';
+import User from '../infra/typeorm/entities/User';
 import AppError from '../../../shared/errors/AppError';
 
 interface RequestDTO {
