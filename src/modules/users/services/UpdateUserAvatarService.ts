@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import fs from 'fs';
 import path from 'path';
 
@@ -11,8 +13,12 @@ interface IRequestDTO {
   avatarFilename: string;
 }
 
+@injectable()
 class UpdateUserAvatarService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
 
   public async execute({
     user_id,
